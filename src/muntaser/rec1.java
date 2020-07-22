@@ -5,7 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
-public class thread_resved  extends Thread{
+public class rec1 extends Thread{
 
 String ipsrc="";
 String ipdes="";
@@ -32,21 +32,26 @@ public void set_infoSoket(String ipsrc , int portsrc , String ipdes , int portde
 
     @Override
     public void run() {
-
         DatagramSocket serverSocket = null;
         try {
             serverSocket = new DatagramSocket(9999);
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        byte[] receiveData = new byte[1024];
-        DatagramPacket receivePacket =
-                new DatagramPacket(receiveData, receiveData.length);
-        try {
-            serverSocket.receive(receivePacket);
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        while (true) {
+            try {
+
+                byte[] receiveData = new byte[1024];
+                DatagramPacket receivePacket =
+                        new DatagramPacket(receiveData, receiveData.length);
+
+                serverSocket.receive(receivePacket);
+                System.out.println(new String(receivePacket.getData()));
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println( new String(receivePacket.getData()));
     }
 }

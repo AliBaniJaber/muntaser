@@ -1,21 +1,20 @@
 package muntaser;
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.Scanner;
 
 import java.io.*;
-import java.net.*;
+
 public class client1 {
 
     public static void main(String args[]) throws Exception {
 
-        thread_rec_2 pp=new thread_rec_2();
+        rec2 pp=new rec2();
+
         pp.start();
-
-
         while (true) {
+
+
             BufferedReader inFromUser =
                     new BufferedReader(new InputStreamReader(System.in));
 
@@ -33,17 +32,7 @@ public class client1 {
 
             clientSocket.send(sendPacket);
 
-            DatagramPacket receivePacket =
-                    new DatagramPacket(receiveData, receiveData.length);
-
-            clientSocket.receive(receivePacket);
-
-            String modifiedSentence =
-                    new String(receivePacket.getData());
-
-            System.out.println("client 2 : "+ modifiedSentence);
-            sentence="";
-            clientSocket.close();
+           clientSocket.close();
         }
     }
 
