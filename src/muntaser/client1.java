@@ -7,33 +7,31 @@ import java.io.*;
 
 public class client1 {
 
+   public String ipsrc="";
+   public String ipdes="";
+   public int portsrc=0;
+   public int portdest=0;
+
+    public void set_infoSoket(String ipsrc , int portsrc , String ipdes , int portdest)
+    {
+        this.ipdes=ipdes;
+        this.ipsrc=ipsrc;
+        this.portsrc=portsrc;
+        this.portdest=portdest;
+
+    }
+
+
+    public void start(){
+        //Activ
+
+
+    }
+
+
     public static void main(String args[]) throws Exception {
-
-        rec2 pp=new rec2();
-
-        pp.start();
-        while (true) {
-
-
-            BufferedReader inFromUser =
-                    new BufferedReader(new InputStreamReader(System.in));
-
-            DatagramSocket clientSocket = new DatagramSocket();
-
-            InetAddress IPAddress = InetAddress.getByName("localhost");
-
-            byte[] sendData = new byte[1024];
-           byte[] receiveData = new byte[1024];
-
-            String sentence = inFromUser.readLine();
-            sendData = sentence.getBytes();
-            DatagramPacket sendPacket =
-                    new DatagramPacket(sendData, sendData.length, IPAddress, 9999);//dest
-
-            clientSocket.send(sendPacket);
-
-           clientSocket.close();
-        }
+        user1 proc=new user1();
+        proc.Start_chating();
     }
 
 }
