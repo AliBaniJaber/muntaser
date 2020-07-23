@@ -25,6 +25,7 @@ public class rec2 extends Thread {
 
     @Override
     public void run() {
+        byte msg[]=new byte[1024];
 
         DatagramSocket clientSocket = null;
         try {
@@ -56,7 +57,8 @@ public class rec2 extends Thread {
                 //new DatagramPacket(receiveData, receiveData.length);
 
                 clientSocket.receive(packetReceive);
-                System.out.println("client 2:  "+ Arrays.toString(packetReceive.getData()));
+                msg=packetReceive.getData();
+                System.out.println("client 2:  "+ new String(msg, 0, packetReceive.getLength()));
 
             } catch (IOException e) {
                 e.printStackTrace();
